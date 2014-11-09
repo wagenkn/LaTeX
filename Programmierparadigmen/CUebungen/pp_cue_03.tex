@@ -129,7 +129,7 @@ S\"{a}mtliche Kommandos, die eine Turtle (wie Harald) versteht, finden sich in d
 \texttt{forward! n} 	& Die Turtle läuft \texttt{n} Schritte nach vorn. \\
 \texttt{backward! n} 	& Die Turtle läuft \texttt{n} Schritte zur\"{u}ck. \\
 \texttt{right! a} 		& Die Turtle dreht sich um \texttt{a} Grad nach rechts. \\
-	\texttt{left! a} 	& Die Turtle dreht sich um \texttt{a} Grad nach links. \\
+\texttt{left! a} 	    & Die Turtle dreht sich um \texttt{a} Grad nach links. \\
 \texttt{pen-up!} 		& Die Turtle hebt den Stift an. Die folgenden Bewegungen\\ & hinterlassen keine Spur. \\
 \texttt{pen-down!} 		& Die Turtle senkt den Stift ab. Die folgenden Bewegungen\\ & hinterlassen eine Spur. \\
 \texttt{pen-erase!}	    & Der Stift der Turtle verwandelt sich in einen Radierer. \\
@@ -139,7 +139,9 @@ S\"{a}mtliche Kommandos, die eine Turtle (wie Harald) versteht, finden sich in d
 						& M\"{o}gliche Werte: s. \href{http://docs.racket-lang.org/draw/color-database___.html?q=the-color-database}{Racket color Database} \\
 \texttt{clone} 			& Die Turtle klont sich selbst. \\
 \texttt{hide!} 			& Die Turtle versteckt sich. \\
-\texttt{show!} 			& Die Turtle zeigt sich wieder (an aktueller Position).
+\texttt{show!} 			& Die Turtle zeigt sich wieder (an aktueller Position).\\
+\texttt{crow}           & Die Turtle stößt einen Freudenschau (Glockenklang) aus.\\
+\texttt{sleep n}        & Die Turtle schläft \texttt{n} Millisekunden.
 \end{tabular}
 
 Machen Sie sich mit diesen Kommandos durch aktive Kommunikation mit Harald vertraut.
@@ -219,14 +221,14 @@ Grad nach rechts (oder links). Der Umfang dieses Kreises betr\"{a}gt offenbar 36
 (define tree
   (lambda (side turtle)
     (if (< side 5) 
-        'ready
+        (send turtle crow)
         (begin
           (send turtle forward! side)
           (send turtle left! 45)
-          (sleep-for-a-while 200)
+          (send turtle sleep 10)
           (tree (/ side 2) turtle)
           (send turtle right! 90)
-          (sleep-for-a-while 200)
+          (send turtle sleep 10)
           (tree (/ side 2) turtle)
           (send turtle left! 45)
           (send turtle backward! side)))))
